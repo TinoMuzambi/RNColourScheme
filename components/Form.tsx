@@ -58,6 +58,15 @@ const Form: React.FC<FormProps> = ({
 		setCurrMode(mode);
 		setCurrNumColours(numColours);
 	};
+
+	const modalClose = () => {
+		if (!Number.parseInt(numColours))
+			return Alert.alert(
+				"Not a number",
+				"Please enter a number in the input and try again"
+			);
+		setModalOpen(false);
+	};
 	return (
 		<View style={styles.inputContainer}>
 			<View style={styles.row}>
@@ -74,7 +83,7 @@ const Form: React.FC<FormProps> = ({
 				/>
 			</View>
 			<TouchableOpacity style={styles.button} onPress={pressHandler}>
-				<Text style={styles.buttonText}>Get your palette</Text>
+				<Text style={styles.buttonText}>Get your Palette</Text>
 			</TouchableOpacity>
 			<Modal visible={modalOpen}>
 				<View style={styles.modal}>
@@ -102,11 +111,7 @@ const Form: React.FC<FormProps> = ({
 						onChangeText={(val) => setNumColours(val)}
 						placeholder="Enter the number of colours"
 					/>
-					<Button
-						title="Close"
-						color="coral"
-						onPress={() => setModalOpen(false)}
-					/>
+					<Button title="Close" color="coral" onPress={modalClose} />
 				</View>
 			</Modal>
 		</View>
