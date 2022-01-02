@@ -17,6 +17,8 @@ const styles = (hex: string) =>
 			justifyContent: "center",
 			alignItems: "center",
 			backgroundColor: hex,
+			width: 50,
+			aspectRatio: 1,
 		},
 		colourText: {
 			color: "red",
