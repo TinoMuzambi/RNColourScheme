@@ -57,9 +57,22 @@ const Form: React.FC<FormProps> = ({ setCurrColour, setCurrMode }) => {
 					onChangeText={(val) => setColour(val)}
 					placeholder="Enter your colour e.g #f2f2f2"
 				/>
-				<Picker selectedValue={mode} onValueChange={(value) => setMode(value)}>
-					<Picker.Item label="Java" value="java" />
-					<Picker.Item label="JavaScript" value="js" />
+				<Picker
+					selectedValue={mode}
+					onValueChange={(value) => setMode(value)}
+					numberOfLines={2}
+				>
+					<Picker.Item label="monochrome" value="monochrome" />
+					<Picker.Item label="monochrome-dark" value="monochrome-dark" />
+					<Picker.Item label="monochrome-light" value="monochrome-light" />
+					<Picker.Item label="analogic" value="analogic" />
+					<Picker.Item label="complement" value="complement" />
+					<Picker.Item
+						label="analogic-complement"
+						value="analogic-complement"
+					/>
+					<Picker.Item label="triad" value="triad" />
+					<Picker.Item label="quad" value="quad" />
 				</Picker>
 			</View>
 			<TouchableOpacity style={styles.button} onPress={pressHandler}>
