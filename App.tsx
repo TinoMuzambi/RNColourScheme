@@ -8,6 +8,7 @@ import {
 	TextInput,
 	TouchableOpacity,
 	View,
+	Alert,
 } from "react-native";
 import Colour from "./components/Colour";
 
@@ -35,7 +36,38 @@ export default function App() {
 		getPallete();
 	}, [currColour]);
 
-	const pressHandler = () => {};
+	const pressHandler = () => {
+		if (!colour)
+			return Alert.alert(
+				"No colour",
+				"Please enter a colour in the box and try again",
+				[
+					{
+						text: "Understood",
+					},
+				]
+			);
+		if (!colour.includes("#"))
+			return Alert.alert(
+				"Incorrect colour format",
+				"Please make sure your colour contains a # symbol and try again",
+				[
+					{
+						text: "Understood",
+					},
+				]
+			);
+		if (colour.length > 9)
+			return Alert.alert(
+				"Incorrect colour format",
+				"Please make sure your colour is in the format #f2f2f2 and try again",
+				[
+					{
+						text: "Understood",
+					},
+				]
+			);
+	};
 
 	return (
 		<SafeAreaView style={styles.container}>
