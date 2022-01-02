@@ -15,7 +15,8 @@ import { FormProps } from "../utils/interfaces";
 
 const Form: React.FC<FormProps> = ({ setCurrColour, setCurrMode }) => {
 	const [colour, setColour] = useState("");
-	const [mode, setMode] = useState("");
+	const [mode, setMode] = useState("analogic");
+	const [numColours, setNumColours] = useState(5);
 	const [modalOpen, setModalOpen] = useState(false);
 
 	const pressHandler = () => {
@@ -67,28 +68,35 @@ const Form: React.FC<FormProps> = ({ setCurrColour, setCurrMode }) => {
 				<Text style={styles.buttonText}>Get your palette</Text>
 			</TouchableOpacity>
 			<Modal visible={modalOpen}>
-				<Picker
-					selectedValue={mode}
-					onValueChange={(value) => setMode(value)}
-					numberOfLines={2}
-				>
-					<Picker.Item label="monochrome" value="monochrome" />
-					<Picker.Item label="monochrome-dark" value="monochrome-dark" />
-					<Picker.Item label="monochrome-light" value="monochrome-light" />
-					<Picker.Item label="analogic" value="analogic" />
-					<Picker.Item label="complement" value="complement" />
-					<Picker.Item
-						label="analogic-complement"
-						value="analogic-complement"
+				<View style={styles.modal}>
+					<Picker
+						selectedValue={mode}
+						onValueChange={(value) => setMode(value)}
+						numberOfLines={2}
+					>
+						<Picker.Item label="monochrome" value="monochrome" />
+						<Picker.Item label="monochrome-dark" value="monochrome-dark" />
+						<Picker.Item label="monochrome-light" value="monochrome-light" />
+						<Picker.Item label="analogic" value="analogic" />
+						<Picker.Item label="complement" value="complement" />
+						<Picker.Item
+							label="analogic-complement"
+							value="analogic-complement"
+						/>
+						<Picker.Item label="triad" value="triad" />
+						<Picker.Item label="quad" value="quad" />
+					</Picker>
+					<TextInput
+						style={styles.numInput}
+						keyboardType="numeric"
+						placeholder="Enter the number of colours"
 					/>
-					<Picker.Item label="triad" value="triad" />
-					<Picker.Item label="quad" value="quad" />
-				</Picker>
-				<Button
-					title="Close"
-					color="coral"
-					onPress={() => setModalOpen(false)}
-				/>
+					<Button
+						title="Close"
+						color="coral"
+						onPress={() => setModalOpen(false)}
+					/>
+				</View>
 			</Modal>
 		</View>
 	);
@@ -113,6 +121,7 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 		width: "90%",
 		marginRight: 15,
+		padding: 5,
 	},
 	button: {
 		backgroundColor: "coral",
@@ -122,5 +131,16 @@ const styles = StyleSheet.create({
 	buttonText: {
 		color: "white",
 		textAlign: "center",
+	},
+	modal: {
+		justifyContent: "center",
+		paddingTop: 30,
+	},
+	numInput: {
+		alignSelf: "center",
+		marginVertical: 20,
+		borderBottomColor: "#eee",
+		borderBottomWidth: 1,
+		padding: 5,
 	},
 });
