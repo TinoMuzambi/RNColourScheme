@@ -29,6 +29,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.svg"
-    }
+    },
+    "description": "A React Native colour scheme picker.",
+    "githubUrl": "https://github.com/TinoMuzambi/RNColourScheme"
   }
 }
