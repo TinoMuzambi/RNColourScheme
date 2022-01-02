@@ -39,11 +39,11 @@ export default function App() {
 			setLoading(false);
 		};
 		getPallete();
-	}, [currColour]);
+	}, [currColour, currMode]);
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<Form setCurrColour={setCurrColour} />
+			<Form setCurrColour={setCurrColour} setCurrMode={setCurrMode} />
 			<View style={styles.colours}>
 				{!loading && (
 					<FlatList

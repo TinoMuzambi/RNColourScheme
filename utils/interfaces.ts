@@ -5,4 +5,5 @@ export interface ColourProps {
 
 export interface FormProps {
 	setCurrColour: Function;
+	setCurrMode: Function;
 }
