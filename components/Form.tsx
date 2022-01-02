@@ -7,6 +7,7 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 
 import { FormProps } from "../utils/interfaces";
 
@@ -49,12 +50,18 @@ const Form: React.FC<FormProps> = ({ setCurrColour, setCurrMode }) => {
 	};
 	return (
 		<View style={styles.inputContainer}>
-			<TextInput
-				style={styles.input}
-				value={colour}
-				onChangeText={(val) => setColour(val)}
-				placeholder="Enter your colour e.g #f2f2f2"
-			/>
+			<View>
+				<TextInput
+					style={styles.input}
+					value={colour}
+					onChangeText={(val) => setColour(val)}
+					placeholder="Enter your colour e.g #f2f2f2"
+				/>
+				<Picker selectedValue={mode} onValueChange={(value) => setMode(value)}>
+					<Picker.Item label="Java" value="java" />
+					<Picker.Item label="JavaScript" value="js" />
+				</Picker>
+			</View>
 			<TouchableOpacity style={styles.button} onPress={pressHandler}>
 				<Text style={styles.buttonText}>Get your palette</Text>
 			</TouchableOpacity>
