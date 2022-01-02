@@ -89,6 +89,8 @@ const Form: React.FC<FormProps> = ({ setCurrColour, setCurrMode }) => {
 					<TextInput
 						style={styles.numInput}
 						keyboardType="numeric"
+						value={numColours.toString()}
+						onChangeText={(val) => setNumColours(Number.parseInt(val))}
 						placeholder="Enter the number of colours"
 					/>
 					<Button
