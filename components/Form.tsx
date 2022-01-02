@@ -1,6 +1,8 @@
 import { useState } from "react";
 import {
 	Alert,
+	Button,
+	Modal,
 	StyleSheet,
 	Text,
 	TextInput,
@@ -14,6 +16,7 @@ import { FormProps } from "../utils/interfaces";
 const Form: React.FC<FormProps> = ({ setCurrColour, setCurrMode }) => {
 	const [colour, setColour] = useState("");
 	const [mode, setMode] = useState("");
+	const [modalOpen, setModalOpen] = useState(false);
 
 	const pressHandler = () => {
 		if (!colour)
@@ -50,13 +53,19 @@ const Form: React.FC<FormProps> = ({ setCurrColour, setCurrMode }) => {
 	};
 	return (
 		<View style={styles.inputContainer}>
-			<View>
+			<View style={styles.row}>
 				<TextInput
 					style={styles.input}
 					value={colour}
 					onChangeText={(val) => setColour(val)}
 					placeholder="Enter your colour e.g #f2f2f2"
 				/>
+				<Button title="select mode" onPress={() => setModalOpen(true)} />
+			</View>
+			<TouchableOpacity style={styles.button} onPress={pressHandler}>
+				<Text style={styles.buttonText}>Get your palette</Text>
+			</TouchableOpacity>
+			<Modal visible={modalOpen}>
 				<Picker
 					selectedValue={mode}
 					onValueChange={(value) => setMode(value)}
@@ -74,10 +83,12 @@ const Form: React.FC<FormProps> = ({ setCurrColour, setCurrMode }) => {
 					<Picker.Item label="triad" value="triad" />
 					<Picker.Item label="quad" value="quad" />
 				</Picker>
-			</View>
-			<TouchableOpacity style={styles.button} onPress={pressHandler}>
-				<Text style={styles.buttonText}>Get your palette</Text>
-			</TouchableOpacity>
+				<Button
+					title="Close"
+					color="coral"
+					onPress={() => setModalOpen(false)}
+				/>
+			</Modal>
 		</View>
 	);
 };
@@ -89,11 +100,18 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		paddingVertical: 10,
 	},
+	row: {
+		flexDirection: "row",
+		width: "100%",
+		paddingHorizontal: "5%",
+	},
 	input: {
+		flex: 1,
 		borderBottomColor: "#eee",
 		borderBottomWidth: 1,
 		marginBottom: 10,
 		width: "90%",
+		marginRight: 15,
 	},
 	button: {
 		backgroundColor: "coral",
