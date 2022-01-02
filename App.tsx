@@ -42,7 +42,7 @@ export default function App() {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<Form />
+			<Form setCurrColour={setCurrColour} />
 			<View style={styles.colours}>
 				{!loading && (
 					<FlatList
@@ -66,24 +66,5 @@ const styles = StyleSheet.create({
 	},
 	colours: {
 		flex: 1,
-	},
-	inputContainer: {
-		alignItems: "center",
-		paddingVertical: 10,
-	},
-	input: {
-		borderBottomColor: "#eee",
-		borderBottomWidth: 1,
-		marginBottom: 10,
-		width: "90%",
-	},
-	button: {
-		backgroundColor: "coral",
-		padding: 10,
-		width: "90%",
-	},
-	buttonText: {
-		color: "white",
-		textAlign: "center",
 	},
 });

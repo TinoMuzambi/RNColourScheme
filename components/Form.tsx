@@ -7,8 +7,9 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
+import { FormProps } from "../utils/interfaces";
 
-const Form: React.FC = () => {
+const Form: React.FC<FormProps> = ({ setCurrColour }) => {
 	const [colour, setColour] = useState("");
 
 	const pressHandler = () => {
