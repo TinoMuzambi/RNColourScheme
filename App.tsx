@@ -1,10 +1,19 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+	FlatList,
+	SafeAreaView,
+	StyleSheet,
+	Text,
+	TextInput,
+	TouchableOpacity,
+	View,
+} from "react-native";
 import Colour from "./components/Colour";
 
 export default function App() {
 	const [currColour, setCurrColour] = useState("0047AB");
+	const [colour, setColour] = useState("");
 	const [colourPalletes, setColourPalletes] = useState([]);
 
 	useEffect(() => {
@@ -24,10 +33,23 @@ export default function App() {
 			setColourPalletes(prettyData);
 		};
 		getPallete();
-	}, []);
+	}, [currColour]);
+
+	const pressHandler = () => {};
 
 	return (
 		<SafeAreaView style={styles.container}>
+			<View style={styles.inputContainer}>
+				<TextInput
+					style={styles.input}
+					value={colour}
+					onChangeText={(val) => setColour(val)}
+					placeholder="Enter your colour e.g #f2f2f2"
+				/>
+				<TouchableOpacity style={styles.button} onPress={pressHandler}>
+					<Text style={styles.buttonText}>Get your palette</Text>
+				</TouchableOpacity>
+			</View>
 			<View style={styles.colours}>
 				<FlatList
 					data={colourPalletes}
@@ -47,5 +69,24 @@ const styles = StyleSheet.create({
 	},
 	colours: {
 		flex: 1,
+	},
+	inputContainer: {
+		alignItems: "center",
+		paddingVertical: 10,
+	},
+	input: {
+		borderBottomColor: "#eee",
+		borderBottomWidth: 1,
+		marginBottom: 10,
+		width: "90%",
+	},
+	button: {
+		backgroundColor: "coral",
+		padding: 10,
+		width: "90%",
+	},
+	buttonText: {
+		color: "white",
+		textAlign: "center",
 	},
 });
