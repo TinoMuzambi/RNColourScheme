@@ -5,11 +5,9 @@ import Colour from "./components/Colour";
 
 export default function App() {
 	const [colourPalletes, setColourPalletes] = useState([]);
-	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		const getPallete = async () => {
-			setLoading(true);
 			const res = await fetch(
 				"https://www.thecolorapi.com/scheme?hex=0047AB&mode=analogic&count=5"
 			);
@@ -23,14 +21,12 @@ export default function App() {
 				};
 			});
 			setColourPalletes(prettyData);
-			setLoading(false);
 		};
 		getPallete();
 	}, []);
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<Text>hello</Text>
 			<View style={styles.colours}>
 				<FlatList
 					data={colourPalletes}
