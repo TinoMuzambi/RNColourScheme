@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { ColourProps } from "../utils/interfaces";
 
 const Colour: React.FC<ColourProps> = ({ hex, name }) => {
+	// console.log(name);
 	return (
 		<View style={styles(hex).colour}>
 			<Text style={styles().colourText}>{name}</Text>

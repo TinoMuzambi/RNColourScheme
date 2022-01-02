@@ -1,36 +1,46 @@
 import { StatusBar } from "expo-status-bar";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import Colour from "./components/Colour";
 
 export default function App() {
+	const [colourPalletes, setColourPalletes] = useState([]);
+	const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+		const getPallete = async () => {
+			setLoading(true);
+			const res = await fetch(
+				"https://www.thecolorapi.com/scheme?hex=0047AB&mode=analogic&count=5"
+			);
+			const data = await res.json();
+			const prettyData = data.colors.map((colour: any) => {
+				return {
+					hex: colour.hex.value,
+					name: colour.name.value,
+					bareImage: colour.image.bare,
+					namedImage: colour.image.named,
+					contrast: colour.contrast.value,
+				};
+			});
+			setColourPalletes(prettyData);
+			setLoading(false);
+		};
+		getPallete();
+	}, []);
+
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 			<Text>hello</Text>
-			<ScrollView>
-				<View style={styles.colours}>
-					<Colour name="red" hex="red" />
-					<Colour name="red" hex="blue" />
-					<Colour name="red" hex="yellow" />
-					<Colour name="red" hex="green" />
-					<Colour name="red" hex="red" />
-					<Colour name="red" hex="blue" />
-					<Colour name="red" hex="yellow" />
-					<Colour name="red" hex="green" />
-					<Colour name="red" hex="red" />
-					<Colour name="red" hex="blue" />
-					<Colour name="red" hex="yellow" />
-					<Colour name="red" hex="green" />
-					<Colour name="red" hex="red" />
-					<Colour name="red" hex="blue" />
-					<Colour name="red" hex="yellow" />
-					<Colour name="red" hex="green" />
-					<Colour name="red" hex="red" />
-					<Colour name="red" hex="blue" />
-					<Colour name="red" hex="yellow" />
-				</View>
-			</ScrollView>
+			<View style={styles.colours}>
+				<FlatList
+					data={colourPalletes}
+					keyExtractor={(item: any) => item.hex}
+					renderItem={({ item }) => <Colour name={item.name} hex={item.hex} />}
+				/>
+			</View>
 			<StatusBar style="auto" />
-		</View>
+		</SafeAreaView>
 	);
 }
 
@@ -38,7 +48,6 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: "#fff",
-		paddingTop: 20,
 	},
 	colours: {
 		flexDirection: "row",
