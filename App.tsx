@@ -19,7 +19,6 @@ export default function App() {
 					hex: colour.hex.value,
 					name: colour.name.value,
 					bareImage: colour.image.bare,
-					namedImage: colour.image.named,
 					contrast: colour.contrast.value,
 				};
 			});
