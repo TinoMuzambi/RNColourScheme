@@ -50,13 +50,8 @@ const Form: React.FC<FormProps> = ({ setCurrColour, setCurrMode }) => {
 				]
 			);
 		setCurrColour(colour.substring(1));
-	};
-
-	const modeHandler = () => {
-		setModalOpen(false);
 		setCurrMode(mode);
 	};
-
 	return (
 		<View style={styles.inputContainer}>
 			<View style={styles.row}>
@@ -89,7 +84,11 @@ const Form: React.FC<FormProps> = ({ setCurrColour, setCurrMode }) => {
 					<Picker.Item label="triad" value="triad" />
 					<Picker.Item label="quad" value="quad" />
 				</Picker>
-				<Button title="Close" color="coral" onPress={modeHandler} />
+				<Button
+					title="Close"
+					color="coral"
+					onPress={() => setModalOpen(false)}
+				/>
 			</Modal>
 		</View>
 	);
