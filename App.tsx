@@ -17,6 +17,7 @@ import Form from "./components/Form";
 export default function App() {
 	const [currColour, setCurrColour] = useState("0047AB");
 	const [currMode, setCurrMode] = useState("analogic");
+	const [currNumColours, setCurrNumColours] = useState(5);
 	const [colourPalletes, setColourPalletes] = useState([]);
 	const [loading, setLoading] = useState(false);
 
@@ -24,7 +25,7 @@ export default function App() {
 		const getPallete = async () => {
 			setLoading(true);
 			const res = await fetch(
-				`https://www.thecolorapi.com/scheme?hex=${currColour}&mode=${currMode}&count=5`
+				`https://www.thecolorapi.com/scheme?hex=${currColour}&mode=${currMode}&count=${currNumColours}`
 			);
 			const data = await res.json();
 			const prettyData = data.colors.map((colour: any) => {
@@ -39,7 +40,7 @@ export default function App() {
 			setLoading(false);
 		};
 		getPallete();
-	}, [currColour, currMode]);
+	}, [currColour, currMode, currNumColours]);
 
 	return (
 		<SafeAreaView style={styles.container}>
