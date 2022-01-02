@@ -3,20 +3,22 @@ import { ColourProps } from "../utils/interfaces";
 
 const Colour: React.FC<ColourProps> = ({ hex, name }) => {
 	return (
-		<View style={styles.colour}>
-			<Text style={styles.colourText}>{name}</Text>
+		<View style={styles(hex).colour}>
+			<Text style={styles(hex).colourText}>{name}</Text>
 		</View>
 	);
 };
 
 export default Colour;
 
-const styles = StyleSheet.create({
-	colour: {
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	colourText: {
-		color: "white",
-	},
-});
+const styles = (hex: string) =>
+	StyleSheet.create({
+		colour: {
+			justifyContent: "center",
+			alignItems: "center",
+			backgroundColor: hex,
+		},
+		colourText: {
+			color: "red",
+		},
+	});

@@ -1,10 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+import Colour from "./components/Colour";
 
 export default function App() {
 	return (
 		<View style={styles.container}>
-			<Text>Open up App.tsx to start working on your app!</Text>
+			<Colour name="red" hex="red" />
 			<StatusBar style="auto" />
 		</View>
 	);
