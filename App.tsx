@@ -17,7 +17,7 @@ import Form from "./components/Form";
 export default function App() {
 	const [currColour, setCurrColour] = useState("0047AB");
 	const [currMode, setCurrMode] = useState("analogic");
-	const [currNumColours, setCurrNumColours] = useState(5);
+	const [currNumColours, setCurrNumColours] = useState("5");
 	const [colourPalletes, setColourPalletes] = useState([]);
 	const [loading, setLoading] = useState(false);
 

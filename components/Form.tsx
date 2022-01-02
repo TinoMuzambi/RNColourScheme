@@ -16,7 +16,7 @@ import { FormProps } from "../utils/interfaces";
 const Form: React.FC<FormProps> = ({ setCurrColour, setCurrMode }) => {
 	const [colour, setColour] = useState("");
 	const [mode, setMode] = useState("analogic");
-	const [numColours, setNumColours] = useState(5);
+	const [numColours, setNumColours] = useState("5");
 	const [modalOpen, setModalOpen] = useState(false);
 
 	const pressHandler = () => {
@@ -62,7 +62,11 @@ const Form: React.FC<FormProps> = ({ setCurrColour, setCurrMode }) => {
 					onChangeText={(val) => setColour(val)}
 					placeholder="Enter your colour e.g #f2f2f2"
 				/>
-				<Button title="select mode" onPress={() => setModalOpen(true)} />
+				<Button
+					title="options"
+					color="coral"
+					onPress={() => setModalOpen(true)}
+				/>
 			</View>
 			<TouchableOpacity style={styles.button} onPress={pressHandler}>
 				<Text style={styles.buttonText}>Get your palette</Text>
@@ -89,8 +93,8 @@ const Form: React.FC<FormProps> = ({ setCurrColour, setCurrMode }) => {
 					<TextInput
 						style={styles.numInput}
 						keyboardType="numeric"
-						value={numColours.toString()}
-						onChangeText={(val) => setNumColours(Number.parseInt(val))}
+						value={numColours}
+						onChangeText={(val) => setNumColours(val)}
 						placeholder="Enter the number of colours"
 					/>
 					<Button
