@@ -1,4 +1,4 @@
 export interface ColourProps {
 	name: string;
-	colourHex: string;
+	hex: string;
 }
