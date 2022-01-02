@@ -44,7 +44,11 @@ export default function App() {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<Form setCurrColour={setCurrColour} setCurrMode={setCurrMode} />
+			<Form
+				setCurrColour={setCurrColour}
+				setCurrMode={setCurrMode}
+				setCurrNumColours={setCurrNumColours}
+			/>
 			<View style={styles.colours}>
 				{!loading && (
 					<FlatList

@@ -13,7 +13,11 @@ import { Picker } from "@react-native-picker/picker";
 
 import { FormProps } from "../utils/interfaces";
 
-const Form: React.FC<FormProps> = ({ setCurrColour, setCurrMode }) => {
+const Form: React.FC<FormProps> = ({
+	setCurrColour,
+	setCurrMode,
+	setCurrNumColours,
+}) => {
 	const [colour, setColour] = useState("");
 	const [mode, setMode] = useState("analogic");
 	const [numColours, setNumColours] = useState("5");
@@ -52,6 +56,7 @@ const Form: React.FC<FormProps> = ({ setCurrColour, setCurrMode }) => {
 			);
 		setCurrColour(colour.substring(1));
 		setCurrMode(mode);
+		setCurrNumColours(numColours);
 	};
 	return (
 		<View style={styles.inputContainer}>
