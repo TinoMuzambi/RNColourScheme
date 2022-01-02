@@ -4,12 +4,13 @@ import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import Colour from "./components/Colour";
 
 export default function App() {
+	const [currColour, setCurrColour] = useState("0047AB");
 	const [colourPalletes, setColourPalletes] = useState([]);
 
 	useEffect(() => {
 		const getPallete = async () => {
 			const res = await fetch(
-				"https://www.thecolorapi.com/scheme?hex=0047AB&mode=analogic&count=5"
+				`https://www.thecolorapi.com/scheme?hex=${currColour}&mode=analogic&count=5`
 			);
 			const data = await res.json();
 			const prettyData = data.colors.map((colour: any) => {
@@ -45,8 +46,6 @@ const styles = StyleSheet.create({
 		backgroundColor: "#fff",
 	},
 	colours: {
-		flexDirection: "row",
-		justifyContent: "center",
-		flexWrap: "wrap",
+		flex: 1,
 	},
 });
