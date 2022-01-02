@@ -10,6 +10,7 @@ import {
 	View,
 	Alert,
 } from "react-native";
+
 import Colour from "./components/Colour";
 
 export default function App() {
