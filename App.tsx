@@ -16,9 +16,11 @@ export default function App() {
 	const [currColour, setCurrColour] = useState("0047AB");
 	const [colour, setColour] = useState("");
 	const [colourPalletes, setColourPalletes] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		const getPallete = async () => {
+			setLoading(true);
 			const res = await fetch(
 				`https://www.thecolorapi.com/scheme?hex=${currColour}&mode=analogic&count=5`
 			);
@@ -32,6 +34,7 @@ export default function App() {
 				};
 			});
 			setColourPalletes(prettyData);
+			setLoading(false);
 		};
 		getPallete();
 	}, [currColour]);
@@ -67,6 +70,7 @@ export default function App() {
 					},
 				]
 			);
+		setCurrColour(colour.substring(1));
 	};
 
 	return (
@@ -83,11 +87,15 @@ export default function App() {
 				</TouchableOpacity>
 			</View>
 			<View style={styles.colours}>
-				<FlatList
-					data={colourPalletes}
-					keyExtractor={(item: any) => item.hex}
-					renderItem={({ item }) => <Colour name={item.name} hex={item.hex} />}
-				/>
+				{!loading && (
+					<FlatList
+						data={colourPalletes}
+						keyExtractor={(item: any) => item.hex}
+						renderItem={({ item }) => (
+							<Colour name={item.name} hex={item.hex} />
+						)}
+					/>
+				)}
 			</View>
 			<StatusBar style="auto" />
 		</SafeAreaView>
